@@ -7,7 +7,18 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {LandingComponent} from './components/landing/landing.component';
 import {LandingAdminComponent} from './components/landing-admin/landing-admin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatGridListModule, MatListModule, MatToolbarModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatCardModule,
+  MatDividerModule,
+  MatExpansionModule,
+  MatGridListModule,
+  MatListModule, MatMenuModule,
+  MatToolbarModule
+} from '@angular/material';
+import {ReservationsService} from './services/reservations.service';
+import {AppRoutingModule} from './app-routing.module';
+import {AuthGuardService} from './guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -17,15 +28,20 @@ import {MatButtonModule, MatGridListModule, MatListModule, MatToolbarModule} fro
     LandingAdminComponent
   ],
   imports: [
+    AppRoutingModule,
     BrowserModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatListModule,
     MatButtonModule,
     MatToolbarModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule,
+    MatCardModule,
+    MatExpansionModule,
+    MatMenuModule
   ],
-  providers: [],
+  providers: [AuthGuardService, ReservationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

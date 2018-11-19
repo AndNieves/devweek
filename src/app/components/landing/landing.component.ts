@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ReservationsService} from '../../services/reservations.service';
+import {WeekDays} from '../../entities/day';
 
 @Component({
   selector: 'app-landing',
@@ -7,9 +9,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LandingComponent implements OnInit {
 
-  constructor() { }
+  days = [];
+
+  constructor(private reservationsService: ReservationsService) {
+  }
 
   ngOnInit() {
+    this.days = Object.keys(WeekDays)
+      .map(key => this.reservationsService.getReservationsForDay(WeekDays[key]));
   }
+
 
 }
