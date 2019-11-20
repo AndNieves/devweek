@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+    - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-node@v1
+      with:
+        node-version: '10.15.3'
+        registry-url: 'https://registry.npmjs.org'
+    - run: npm install
+    - name: Build
+      run: |
+        echo Build
+        npm run release
+        echo done
